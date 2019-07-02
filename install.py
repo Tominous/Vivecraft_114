@@ -151,7 +151,7 @@ def installAndPatchMcp( mcp_dir ):
     mcp_cfg_file = os.path.join(mcp_dir,"conf","mcp.cfg")
     if os.path.exists(mcp_cfg_file):
         replacelineinfile( mcp_cfg_file, "MD5Client  =", "MD5Client  = %s\n" % mc_file_md5, True );   # Multiple 'MD5Client' entries - hack to get first one currently
-        #replacelineinfile( mcp_cfg_file, "MD5Server  =", "MD5Server  = %s\n" % mc_server_file_md5, True );
+        replacelineinfile( mcp_cfg_file, "MD5Server  =", "MD5Server  = %s\n" % mc_server_file_md5, True );
 
     # Patch Start.java with minecraft version
     start_java_file = os.path.join(base_dir,"mcppatches","Start.java")
@@ -238,8 +238,8 @@ def download_deps( mcp_dir, download_mc, forgedep=False ):
    
     json_obj = []
     with open(source_json_file,"rb") as f:
-        #data=f.read()
-        #print 'JSON File:\n%s' % data
+        data=f.read()
+        print 'JSON File:\n%s' % data
         json_obj = json.load( f )
     try:
         newlibs = []
